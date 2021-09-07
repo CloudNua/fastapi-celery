@@ -51,6 +51,7 @@ def task_status(task_id: str):
         }
     return JSONResponse(response)
 
+
 @users_router.post("/webhook_test/")
 def webhook_test():
     if not random.choice([0, 1]):
@@ -61,12 +62,19 @@ def webhook_test():
     requests.post("https://httpbin.org/delay/5")
     return "pong"
 
+
 @users_router.post("/webhook_test_2/")
 def webhook_test_2():
     task = task_process_notification.delay()
     print(task.id)
     return "pong"
 
+
 @users_router.get("/form_ws/")
 def form_ws_example(request: Request):
     return templates.TemplateResponse("form_ws.html", {"request": request})
+
+
+@users_router.get("/form_socketio/")
+def form_socketio_example(request: Request):
+    return templates.TemplateResponse("form_socketio.html", {"request": request})
