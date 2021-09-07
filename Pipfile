@@ -9,6 +9,8 @@ uvicorn = {version = "==0.14.0", extras = ["standard"]}
 celery = "==5.1.2"
 redis = "==3.5.3"
 flower = "==1.0.0"
+alembic = "==1.6.5"
+SQLAlchemy = "==1.4.20"
 
 [dev-packages]
 
