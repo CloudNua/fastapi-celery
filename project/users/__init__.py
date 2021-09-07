@@ -4,4 +4,4 @@ users_router = APIRouter(
     prefix="/users",
 )
 
-from . import models, tasks
+from . import views, models, tasks
