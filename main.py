@@ -10,7 +10,7 @@ def celery_worker():
 
     def run_worker():
         subprocess.call(
-            ["celery", "-A", "main.celery", "worker", "--loglevel=info"]
+            ["celery", "-A", "main.celery", "worker", "--loglevel=info", "-Q", "high_priority,default"]
         )
 
     run_process("./project", run_worker)
