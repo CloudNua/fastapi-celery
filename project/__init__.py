@@ -9,6 +9,9 @@ broadcast = Broadcast(settings.WS_MESSAGE_QUEUE)
 def create_app() -> FastAPI:
     app = FastAPI()
 
+    from project.logging import configure_logging
+    configure_logging()
+
     # do this before loading routes
     from project.celery_utils import create_celery
     app.celery_app = create_celery()
@@ -27,7 +30,7 @@ def create_app() -> FastAPI:
         await broadcast.connect()
 
     @app.on_event("shutdown")
-    async def startup_event():
+    async def shutdown_event():
         await broadcast.disconnect()
 
     @app.get("/")

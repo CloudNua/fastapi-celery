@@ -38,6 +38,11 @@ services:
       dockerfile: ./compose/local/fastapi/Dockerfile
     image: fastapi_celery_example_celery_worker
     command: /start-celeryworker
+    logging:
+      driver: syslog
+      options:
+        syslog-address: "tcp+tls://logs3.papertrailapp.com:27924"
+        tag: "{{.Name}}/{{.ID}}"
     volumes:
       - .:/app
     env_file:
